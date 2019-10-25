@@ -18,7 +18,7 @@
 	const addItem = ()=>{
 		items = [
 			...items,
-			{id: Math.random(), name, done: false}
+			{id: Math.floor(Math.random() * 100), name, done: false}
 		];
 		name = '';
 	}
@@ -37,6 +37,9 @@
 	li{
 		border-bottom: 1px solid #dedede;
 		padding: 15px 5px;
+	}
+	.completeLabel{
+		display: inline-block;
 	}
 	.id{
 		color: #999;
@@ -91,9 +94,11 @@
 					<li>
 						<div class="row">
 							<div class="col-12">
-								<input type="checkbox" bind:checked={item.done}>
-								<small class="text-muted">{item.done ? '' : 'in'}complete</small>	
-							</div>
+								<input name="completeBox" id="completeBox{item.id}" type="checkbox" bind:checked={item.done}>	
+								<label for="completeBox{item.id}" class="completeLabel">
+									<small class="text-muted">{item.done ? '' : 'in'}complete</small>
+								</label>
+								</div>
 							<div class="col-8 {item.done ? 'done' : ''}">
 								<span class="name">{item.name}</span>
 							</div>
